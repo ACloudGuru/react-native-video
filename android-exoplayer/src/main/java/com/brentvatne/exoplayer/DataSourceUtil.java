@@ -58,8 +58,8 @@ public class DataSourceUtil {
 
     private static DataSource.Factory buildDataSourceFactory(Context context, DefaultBandwidthMeter bandwidthMeter) {
         Context appContext = context.getApplicationContext();
-        return new DefaultDataSourceFactory(appContext, bandwidthMeter,
-                buildHttpDataSourceFactory(appContext, bandwidthMeter));
+        return new DefaultDataSourceFactory(appContext,
+                Util.getUserAgent(appContext, context.getApplicationInfo().name), bandwidthMeter);
     }
 
     private static HttpDataSource.Factory buildHttpDataSourceFactory(Context context, DefaultBandwidthMeter bandwidthMeter) {
