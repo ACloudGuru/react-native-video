@@ -41,7 +41,8 @@ public class DataSourceUtil {
         DataSourceUtil.rawDataSourceFactory = factory;
     }
 
-    public static DataSource.Factory getDefaultDataSourceFactory(Context context, DefaultBandwidthMeter bandwidthMeter) {
+    public static DataSource.Factory getDefaultDataSourceFactory(Context context,
+            DefaultBandwidthMeter bandwidthMeter) {
         if (defaultDataSourceFactory == null) {
             defaultDataSourceFactory = buildDataSourceFactory(context, bandwidthMeter);
         }
@@ -62,8 +63,10 @@ public class DataSourceUtil {
                 Util.getUserAgent(appContext, context.getApplicationInfo().name), bandwidthMeter);
     }
 
-    private static HttpDataSource.Factory buildHttpDataSourceFactory(Context context, DefaultBandwidthMeter bandwidthMeter) {
-        return new OkHttpDataSourceFactory(OkHttpClientProvider.getOkHttpClient(), getUserAgent(context), bandwidthMeter);
+    private static HttpDataSource.Factory buildHttpDataSourceFactory(Context context,
+            DefaultBandwidthMeter bandwidthMeter) {
+        return new OkHttpDataSourceFactory(OkHttpClientProvider.getOkHttpClient(), getUserAgent(context),
+                bandwidthMeter);
     }
 
 }
