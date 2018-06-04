@@ -79,5 +79,4 @@ public class DataSourceUtil {
         container.setCookieJar(new JavaNetCookieJar(handler));
         return new OkHttpDataSourceFactory(client, getUserAgent(context), bandwidthMeter);
     }
-
 }
