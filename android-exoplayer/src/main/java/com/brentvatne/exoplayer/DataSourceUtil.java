@@ -49,7 +49,8 @@ public class DataSourceUtil {
         DataSourceUtil.rawDataSourceFactory = factory;
     }
 
-    public static DataSource.Factory getDefaultDataSourceFactory(ReactContext context, DefaultBandwidthMeter bandwidthMeter) {
+    public static DataSource.Factory getDefaultDataSourceFactory(ReactContext context,
+            DefaultBandwidthMeter bandwidthMeter) {
         if (defaultDataSourceFactory == null) {
             defaultDataSourceFactory = buildDataSourceFactory(context, bandwidthMeter);
         }
@@ -64,12 +65,14 @@ public class DataSourceUtil {
         return new RawResourceDataSourceFactory(context.getApplicationContext());
     }
 
-    private static DataSource.Factory buildDataSourceFactory(ReactContext context, DefaultBandwidthMeter bandwidthMeter) {
+    private static DataSource.Factory buildDataSourceFactory(ReactContext context,
+            DefaultBandwidthMeter bandwidthMeter) {
         return new DefaultDataSourceFactory(context, bandwidthMeter,
                 buildHttpDataSourceFactory(context, bandwidthMeter));
     }
 
-    private static HttpDataSource.Factory buildHttpDataSourceFactory(ReactContext context, DefaultBandwidthMeter bandwidthMeter) {
+    private static HttpDataSource.Factory buildHttpDataSourceFactory(ReactContext context,
+            DefaultBandwidthMeter bandwidthMeter) {
         OkHttpClient client = OkHttpClientProvider.getOkHttpClient();
         CookieJarContainer container = (CookieJarContainer) client.cookieJar();
         ForwardingCookieHandler handler = new ForwardingCookieHandler(context);
