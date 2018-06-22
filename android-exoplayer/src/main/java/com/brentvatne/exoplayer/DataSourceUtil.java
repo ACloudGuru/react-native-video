@@ -65,10 +65,10 @@ public class DataSourceUtil {
         return new RawResourceDataSourceFactory(context.getApplicationContext());
     }
 
-    private static DataSource.Factory buildDataSourceFactory(ReactContext context,
-            DefaultBandwidthMeter bandwidthMeter) {
-        return new DefaultDataSourceFactory(context, bandwidthMeter,
-                buildHttpDataSourceFactory(context, bandwidthMeter));
+    private static DataSource.Factory buildDataSourceFactory(Context context, DefaultBandwidthMeter bandwidthMeter) {
+        Context appContext = context.getApplicationContext();
+        return new DefaultDataSourceFactory(appContext,
+                Util.getUserAgent(appContext, context.getApplicationInfo().name), bandwidthMeter);
     }
 
     private static HttpDataSource.Factory buildHttpDataSourceFactory(ReactContext context,
